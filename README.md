@@ -1,4 +1,4 @@
-## Property Share Demp APi
+## Property Share Demp Api
 Demo Rest Apis build on Laravel, Mysql for a react based Property Selling on Sharing base website 
 
 Setup:
