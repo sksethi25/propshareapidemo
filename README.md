@@ -9,6 +9,7 @@ Setup:
 
 Apis:
 1. Property List Apis(/api/property?city={city}&type={type}&sort={sort)
+
    This api return list of properties with filter available on city, type and different type of sorting.
 
 
