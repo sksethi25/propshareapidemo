@@ -19,7 +19,7 @@ class PropertyController extends BaseController
         //Input
         $city =trim($request->query("city", ""));
         $type =trim($request->query("type", ""));
-        $sort =$request->query("sort", 1);
+        $sort =intval(trim($request->query("sort", 1)));
 
         $filtered_properties= Property::getFilteredProperties($city, $type, $sort);
         $property_tiles= self::getPropertyTiles($filtered_properties);
@@ -76,9 +76,9 @@ class PropertyController extends BaseController
         $tile['days_left'] = \Carbon\Carbon::createFromFormat('Y-m-d', $property->funding_close_date)->diffInDays();
 
         $property['funding_status']= "" ;
-        if($property->funding_percentage>=100 &&  $property->waitlist ===0 ){
+        if($property->funding_percentage>=100 &&  $property->waitlist ==0 ){
            $tile['funding_status']= "Fully Funded" ;
-       }else if($property->waitlist ===1){
+       }else if($property->funding_percentage>=100 && $property->waitlist ===1){
            $tile['funding_status']= "Join Waitlist" ;
        }  
        return $tile;

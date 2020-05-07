@@ -27,17 +27,17 @@ class Property extends Model
         return $query->where('type', $type);
     }
 
-    public function scopeSortByLatest($query, $type)
+    public function scopeSortByLatest($query)
     {
         return $query->orderBy('created_at', 'DESC');
     }
 
-    public function scopeSortByReturn($query, $type)
+    public function scopeSortByReturn($query)
     {
         return  $query->orderBy('return_target_percentage', 'DESC');
     }
 
-    public function scopeSortByRentalYield($query, $type)
+    public function scopeSortByRentalYield($query)
     {
         return $query->orderBy('rental_yield_percentage', 'DESC');
     }
@@ -54,12 +54,13 @@ class Property extends Model
         }
 
         if($sort==1){
-           $query->sortByLatest('created_at', 'DESC');
+          $query= $query->sortByLatest($query);
         }else if($sort==2){
-            $query->sortByLatest('return_target_percentage', 'DESC');
+           $query= $query->sortByReturn($query);
         }else if($sort==3){
-            $query->sortByLatest('rental_yield_percentage', 'DESC');
+            $query=$query->sortByRentalYield($query);
         }
+
         return $query->get();
 
     }
